@@ -717,7 +717,7 @@
 
 <script>
 function getRadioValue(name) {
-    const el = document.querySelector(\`input[name="\${name}"]:checked\`);
+    const el = document.querySelector('input[name="' + name + '"]:checked');
     return el ? el.value : "";
 }
 
@@ -893,7 +893,7 @@ async function submitForm() {
         }
     };
 
-    // Show JSON on screen
+    // Restore JSON preview
     document.getElementById("jsonOutput").textContent = JSON.stringify(data, null, 2);
 
     try {
@@ -922,6 +922,8 @@ async function submitForm() {
 }
 </script>
 
+
 </body>
 </html>
+
 
