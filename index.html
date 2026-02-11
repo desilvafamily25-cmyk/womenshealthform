@@ -37,16 +37,17 @@
             text-align: center;
         }
 
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 8px;
-            letter-spacing: 0.05em;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
         }
 
-        .logo-brand {
-            font-weight: 600;
+        .logo-image {
+            height: 60px;
+            width: auto;
+            margin-right: 0;
         }
 
         .website-link {
@@ -384,8 +385,8 @@
                 padding: 30px 20px;
             }
 
-            .logo {
-                font-size: 1.8rem;
+            .logo-image {
+                height: 50px;
             }
 
             .form-wrapper {
@@ -421,7 +422,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo"><span class="logo-brand">Pause</span>Sleep</div>
+            <div class="logo-container">
+                <img src="pausesleep-logo.jpg" alt="PauseSleep" class="logo-image">
+            </div>
             <div class="website-link">www.pausesleep.com.au</div>
             <div class="tagline">Women's Health Questionnaire</div>
             <p class="intro-text">
