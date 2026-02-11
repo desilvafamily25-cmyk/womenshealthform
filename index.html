@@ -45,9 +45,10 @@
         }
 
         .logo-image {
-            height: 60px;
+            height: 80px;
             width: auto;
             margin-right: 0;
+            object-fit: contain;
         }
 
         .website-link {
@@ -386,7 +387,7 @@
             }
 
             .logo-image {
-                height: 50px;
+                height: 60px;
             }
 
             .form-wrapper {
@@ -423,7 +424,7 @@
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <img src="pausesleep-logo.jpg" alt="PauseSleep" class="logo-image">
+                <img src="pausesleep-logo.jpg" alt="PauseSleep" class="logo-image" onerror="this.style.display='none'">
             </div>
             <div class="website-link">www.pausesleep.com.au</div>
             <div class="tagline">Women's Health Questionnaire</div>
@@ -1128,22 +1129,44 @@
                     "https://gekabqqvbgvjtstxqsie.supabase.co/functions/v1/submit-womens-form",
                     {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                        headers: { 
+                            "Content-Type": "application/json"
+                        },
+                        mode: "cors",
                         body: JSON.stringify(data)
                     }
                 );
 
                 if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(JSON.stringify(result));
+                    let errorMsg = "Server returned error " + response.status;
+                    try {
+                        const result = await response.json();
+                        errorMsg = result.error || result.message || errorMsg;
+                    } catch (e) {
+                        const text = await response.text();
+                        if (text) errorMsg = text;
+                    }
+                    throw new Error(errorMsg);
                 }
 
+                // Success - redirect to thank you page
                 window.location.href = "thank-you.html";
 
             } catch (err) {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Questionnaire';
-                alert("Submission error: " + err.message + "\n\nPlease check your internet connection and try again.");
+                
+                console.error("Submission error:", err);
+                
+                let userMessage = "Unable to submit the form. ";
+                
+                if (err.message.includes("Failed to fetch") || err.name === "TypeError") {
+                    userMessage += "Please check your internet connection and try again. If the problem persists, the server may be temporarily unavailable.";
+                } else {
+                    userMessage += err.message;
+                }
+                
+                alert(userMessage);
             }
         }
 
