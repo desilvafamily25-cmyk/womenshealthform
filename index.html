@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaBody Medical – Women's Health Questionnaire</title>
+    <title>Pause Sleep – Women's Health Questionnaire</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90A4 0%, #7B68A6 100%);
             color: #1a202c;
             line-height: 1.6;
             min-height: 100vh;
@@ -31,16 +31,29 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90A4 0%, #7B68A6 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 300;
             margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .logo-brand {
+            font-weight: 600;
+        }
+
+        .website-link {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            font-weight: 300;
         }
 
         .tagline {
@@ -74,7 +87,7 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, #4A90A4 0%, #7B68A6 100%);
             border-radius: 10px;
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: 12.5%;
@@ -90,7 +103,7 @@
 
         .step-indicator {
             font-weight: 600;
-            color: #667eea;
+            color: #4A90A4;
         }
 
         .form-wrapper {
@@ -123,7 +136,7 @@
             color: #2d3748;
             margin-bottom: 8px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #4A90A4;
             display: inline-block;
         }
 
@@ -143,7 +156,7 @@
             color: #4a5568;
             margin-bottom: 15px;
             padding-left: 12px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #4A90A4;
         }
 
         .form-group {
@@ -176,8 +189,8 @@
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #4A90A4;
+            box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.1);
         }
 
         .form-textarea {
@@ -216,7 +229,7 @@
         }
 
         .checkbox-label:hover {
-            border-color: #667eea;
+            border-color: #4A90A4;
             background: #edf2f7;
         }
 
@@ -224,7 +237,7 @@
             margin-right: 10px;
             width: 18px;
             height: 18px;
-            accent-color: #667eea;
+            accent-color: #4A90A4;
         }
 
         .table-container {
@@ -241,7 +254,7 @@
         }
 
         .form-table th {
-            background: #667eea;
+            background: #4A90A4;
             color: white;
             padding: 14px 12px;
             text-align: left;
@@ -269,7 +282,7 @@
         .form-table input[type="radio"] {
             width: 20px;
             height: 20px;
-            accent-color: #667eea;
+            accent-color: #4A90A4;
             cursor: pointer;
         }
 
@@ -301,14 +314,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90A4 0%, #7B68A6 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(74, 144, 164, 0.4);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 6px 20px rgba(74, 144, 164, 0.5);
         }
 
         .btn-secondary {
@@ -372,7 +385,7 @@
             }
 
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .form-wrapper {
@@ -408,7 +421,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">NovaBody Medical</div>
+            <div class="logo"><span class="logo-brand">Pause</span>Sleep</div>
+            <div class="website-link">www.pausesleep.com.au</div>
             <div class="tagline">Women's Health Questionnaire</div>
             <p class="intro-text">
                 Complete this form accurately to help us provide safe, personalized care tailored to your needs.
