@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PauseSleep By Dr.Premila Hewage – Women's Health Questionnaire</title>
+    <title>PauseSleep By Dr Premila Hewage – Women's Health Questionnaire</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             color: #1a202c;
             line-height: 1.6;
             min-height: 100vh;
@@ -31,16 +31,40 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .logo-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
+            padding: 2px;
         }
 
         .logo {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 8px;
+        }
+
+        .doctor-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 16px;
         }
 
         .tagline {
@@ -74,7 +98,7 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, #319795 0%, #48bb78 100%);
             border-radius: 10px;
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: 12.5%;
@@ -90,7 +114,7 @@
 
         .step-indicator {
             font-weight: 600;
-            color: #667eea;
+            color: #319795;
         }
 
         .form-wrapper {
@@ -123,7 +147,7 @@
             color: #2d3748;
             margin-bottom: 8px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #319795;
             display: inline-block;
         }
 
@@ -143,7 +167,7 @@
             color: #4a5568;
             margin-bottom: 15px;
             padding-left: 12px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #319795;
         }
 
         .form-group {
@@ -176,8 +200,8 @@
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #319795;
+            box-shadow: 0 0 0 3px rgba(49, 151, 149, 0.1);
         }
 
         .form-textarea {
@@ -216,7 +240,7 @@
         }
 
         .checkbox-label:hover {
-            border-color: #667eea;
+            border-color: #319795;
             background: #edf2f7;
         }
 
@@ -224,7 +248,7 @@
             margin-right: 10px;
             width: 18px;
             height: 18px;
-            accent-color: #667eea;
+            accent-color: #319795;
         }
 
         .table-container {
@@ -241,7 +265,7 @@
         }
 
         .form-table th {
-            background: #667eea;
+            background: #2d3748;
             color: white;
             padding: 14px 12px;
             text-align: left;
@@ -269,7 +293,7 @@
         .form-table input[type="radio"] {
             width: 20px;
             height: 20px;
-            accent-color: #667eea;
+            accent-color: #319795;
             cursor: pointer;
         }
 
@@ -301,14 +325,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #319795 0%, #48bb78 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(49, 151, 149, 0.4);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 6px 20px rgba(49, 151, 149, 0.5);
         }
 
         .btn-secondary {
@@ -375,6 +399,11 @@
                 font-size: 1.5rem;
             }
 
+            .logo-image {
+                width: 60px;
+                height: 60px;
+            }
+
             .form-wrapper {
                 padding: 30px 20px;
             }
@@ -408,7 +437,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">NovaBody Medical</div>
+            <div class="logo-container">
+                <img src="pausesleeplogo-1.jpg" alt="PauseSleep Logo" class="logo-image">
+            </div>
+            <div class="logo">PauseSleep</div>
+            <div class="doctor-name">By Dr Premila Hewage</div>
             <div class="tagline">Women's Health Questionnaire</div>
             <p class="intro-text">
                 Complete this form accurately to help us provide safe, personalised care tailored to your needs.
