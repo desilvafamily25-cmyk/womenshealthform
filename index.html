@@ -170,6 +170,21 @@
             border-left: 4px solid #319795;
         }
 
+        .safety-alert {
+            background: #fff5f5;
+            border: 2px solid #fc8181;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .safety-alert-title {
+            color: #c53030;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -251,6 +266,35 @@
             accent-color: #319795;
         }
 
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        .radio-label:hover {
+            border-color: #319795;
+            background: #edf2f7;
+        }
+
+        .radio-label input {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            accent-color: #319795;
+        }
+
         .table-container {
             overflow-x: auto;
             margin: 20px 0;
@@ -289,7 +333,6 @@
             border-radius: 6px;
         }
 
-        .form-table input[type="checkbox"],
         .form-table input[type="radio"] {
             width: 20px;
             height: 20px;
@@ -344,17 +387,6 @@
             background: #e2e8f0;
         }
 
-        .btn-clear {
-            background: #fed7d7;
-            color: #c53030;
-            padding: 10px 20px;
-        }
-
-        .btn-clear:hover {
-            background: #fc8181;
-            color: white;
-        }
-
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
@@ -377,13 +409,6 @@
 
         .autosave-indicator.show {
             opacity: 1;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
         }
 
         @media (max-width: 768px) {
@@ -427,10 +452,6 @@
             .checkbox-group {
                 grid-template-columns: 1fr;
             }
-
-            .button-group {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -444,7 +465,7 @@
             <div class="doctor-name">By Dr Premila Hewage</div>
             <div class="tagline">Women's Health Questionnaire</div>
             <p class="intro-text">
-                Complete this form accurately to help us provide safe, personalised care tailored to your needs.
+                Complete this form accurately to help us provide safe, personalised care for your menopause and women's health needs.
             </p>
         </div>
 
@@ -463,7 +484,7 @@
                 <!-- Step 1: Personal Information -->
                 <div class="step active" data-step="1">
                     <h2 class="section-title">Personal Information</h2>
-                    <p class="section-description">Let's start with some basic information about you.</p>
+                    <p class="section-description">Let's start with some basic information.</p>
                     
                     <div class="form-group">
                         <label class="form-label">Full Name <span class="required">*</span></label>
@@ -475,35 +496,14 @@
                         <input type="date" id="dob" class="form-input" required>
                     </div>
 
-                    <div class="subsection">
-                        <h3 class="subsection-title">Measurements</h3>
-                        <div class="form-grid-3">
-                            <div class="form-group">
-                                <label class="form-label">Height (cm)</label>
-                                <input type="number" id="height_cm" class="form-input" step="0.1">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Weight (kg)</label>
-                                <input type="number" id="weight_kg" class="form-input" step="0.1">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Recent weight change?</label>
-                                <select id="recent_weight_change" class="form-select">
-                                    <option value="">Select...</option>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                </select>
-                            </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Height (cm)</label>
+                            <input type="number" id="height_cm" class="form-input" step="0.1">
                         </div>
-                        <div class="form-grid-2">
-                            <div class="form-group">
-                                <label class="form-label">If yes, how many kg?</label>
-                                <input type="number" id="recent_weight_change_kg" class="form-input" step="0.1">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Over what time frame?</label>
-                                <input type="text" id="recent_weight_change_timeframe" class="form-input" placeholder="e.g., 3 months">
-                            </div>
+                        <div class="form-group">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" id="weight_kg" class="form-input" step="0.1">
                         </div>
                     </div>
                 </div>
@@ -511,195 +511,233 @@
                 <!-- Step 2: Reason for Visit -->
                 <div class="step" data-step="2">
                     <h2 class="section-title">Reason for Consultation</h2>
-                    <p class="section-description">Select all that apply to your visit today.</p>
+                    <p class="section-description">What brings you here today? (Select all that apply)</p>
                     
                     <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" id="contraception_advice"><span>Contraception advice</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="bladder_problems"><span>Bladder problems</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="menopause"><span>Menopause</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="fertility_issues"><span>Fertility issues</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="relationship_issues"><span>Relationship issues</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="breast_concerns"><span>Breast concerns</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="pregnancy"><span>Pregnancy</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="mental_health"><span>Mental health</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="sexual_health"><span>Sexual health</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="period_concerns"><span>Period concerns</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="cervical_screening_test"><span>Cervical Screening Test</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_menopause"><span>Menopause/Perimenopause symptoms</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_weight"><span>Weight management</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_contraception"><span>Contraception advice</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_periods"><span>Period concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_sexual"><span>Sexual health concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_bladder"><span>Bladder problems</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_breast"><span>Breast concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_mental"><span>Mental health concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_other_check"><span>Other</span></label>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Other reason</label>
-                        <input type="text" id="other_reason" class="form-input" placeholder="Please specify...">
+                        <label class="form-label">If other, please specify</label>
+                        <input type="text" id="reason_other_text" class="form-input">
                     </div>
                 </div>
 
                 <!-- Step 3: Medical History -->
                 <div class="step" data-step="3">
                     <h2 class="section-title">Medical History</h2>
-                    <p class="section-description">Tell us about your allergies and past medical conditions.</p>
                     
                     <div class="subsection">
-                        <h3 class="subsection-title">Allergies</h3>
-                        <div class="form-group">
-                            <label class="form-label">Do you have any allergies?</label>
-                            <select id="has_allergies" class="form-select">
-                                <option value="">Select...</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
+                        <div class="safety-alert">
+                            <div class="safety-alert-title">⚠️ Important for Treatment Safety</div>
+                            <p style="color: #742a2a; font-size: 0.9rem;">Please check if you have EVER been diagnosed with any of these conditions</p>
                         </div>
-                        <div class="table-container">
-                            <table class="form-table">
-                                <thead><tr><th>Allergy</th><th>Reaction</th></tr></thead>
-                                <tbody>
-                                    <tr><td><input type="text" id="allergy1" placeholder="e.g., Penicillin"></td><td><input type="text" id="reaction1" placeholder="e.g., Rash"></td></tr>
-                                    <tr><td><input type="text" id="allergy2"></td><td><input type="text" id="reaction2"></td></tr>
-                                    <tr><td><input type="text" id="allergy3"></td><td><input type="text" id="reaction3"></td></tr>
-                                </tbody>
-                            </table>
+                        
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" id="hx_breast_cancer"><span>Breast cancer</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_blood_clot"><span>Blood clot (DVT or pulmonary embolism)</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_heart_stroke"><span>Heart attack or stroke</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_liver"><span>Liver disease</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_endometrial"><span>Endometrial cancer or hyperplasia</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_ovarian"><span>Ovarian cancer</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_melanoma"><span>Melanoma</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_vaginal_bleeding"><span>Current unexplained vaginal bleeding</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_none"><span>None of the above</span></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">If you checked any conditions above, please provide year(s) diagnosed</label>
+                            <textarea id="hx_details" class="form-textarea" rows="2"></textarea>
                         </div>
                     </div>
 
                     <div class="subsection">
-                        <h3 class="subsection-title">Past Medical History</h3>
-                        <div class="table-container">
-                            <table class="form-table">
-                                <thead><tr><th>Year</th><th>Details</th></tr></thead>
-                                <tbody>
-                                    <tr><td><input type="text" id="pmh_year1" placeholder="e.g., 2020"></td><td><input type="text" id="pmh_details1" placeholder="Condition or surgery"></td></tr>
-                                    <tr><td><input type="text" id="pmh_year2"></td><td><input type="text" id="pmh_details2"></td></tr>
-                                    <tr><td><input type="text" id="pmh_year3"></td><td><input type="text" id="pmh_details3"></td></tr>
-                                    <tr><td><input type="text" id="pmh_year4"></td><td><input type="text" id="pmh_details4"></td></tr>
-                                </tbody>
-                            </table>
+                        <h3 class="subsection-title">Allergies</h3>
+                        <div class="form-group">
+                            <label class="form-label">Do you have any allergies? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="has_allergies" value="yes"><span>Yes</span></label>
+                                <label class="radio-label"><input type="radio" name="has_allergies" value="no" checked><span>No</span></label>
+                            </div>
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label">Allergy 1: Medication/Substance</label>
+                                <input type="text" id="allergy1_med" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Reaction</label>
+                                <input type="text" id="allergy1_reaction" class="form-input">
+                            </div>
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label">Allergy 2: Medication/Substance</label>
+                                <input type="text" id="allergy2_med" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Reaction</label>
+                                <input type="text" id="allergy2_reaction" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Other Medical Conditions</h3>
+                        <div class="form-group">
+                            <label class="form-label">Any other significant medical conditions?</label>
+                            <textarea id="other_conditions" class="form-textarea" rows="3" placeholder="e.g., diabetes, thyroid disease, high blood pressure"></textarea>
                         </div>
                     </div>
 
                     <div class="subsection">
                         <h3 class="subsection-title">Current Medications</h3>
                         <div class="form-group">
-                            <label class="form-label">List all medications</label>
-                            <textarea id="current_medications" class="form-textarea" placeholder="Include tablets, inhalers, patches, gels, injections, and natural therapies..."></textarea>
-                            <span class="help-text">Please include dosage if known</span>
+                            <label class="form-label">List ALL current medications <span class="required">*</span></label>
+                            <textarea id="current_medications" class="form-textarea" rows="4" placeholder="Include vitamins, supplements, natural therapies"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 4: Reproductive Health -->
+                <!-- Step 4: Menstrual & Reproductive History -->
                 <div class="step" data-step="4">
-                    <h2 class="section-title">Reproductive Health</h2>
-                    <p class="section-description">Information about your menstrual history and contraception.</p>
+                    <h2 class="section-title">Menstrual & Reproductive History</h2>
                     
                     <div class="subsection">
-                        <h3 class="subsection-title">Menstrual History</h3>
-                        <label class="checkbox-label" style="max-width: 300px;"><input type="checkbox" id="mh_not_applicable"><span>Not applicable</span></label>
-                        <div class="form-grid-3">
-                            <div class="form-group"><label class="form-label">Age at first period</label><input type="number" id="mh_age_first_period" class="form-input" min="0" max="30"></div>
-                            <div class="form-group"><label class="form-label">Length of period (days)</label><input type="text" id="mh_period_length" class="form-input" placeholder="e.g., 5 days"></div>
-                            <div class="form-group"><label class="form-label">Length of cycle (days)</label><input type="text" id="mh_cycle_length" class="form-input" placeholder="e.g., 28 days"></div>
-                        </div>
+                        <h3 class="subsection-title">Menstrual Status</h3>
                         <div class="form-group">
-                            <label class="form-label">Do you experience any of the following?</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-label"><input type="checkbox" id="mh_bleeding_outside"><span>Bleeding outside your period</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="mh_pain_intercourse"><span>Bleeding/pain with intercourse</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="mh_painful_periods"><span>Painful periods</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="mh_heavy_periods"><span>Heavy periods</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="mh_prolonged_periods"><span>Prolonged periods</span></label>
+                            <label class="form-label">Are you currently having periods? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="period_status" value="regular"><span>Yes, regular periods</span></label>
+                                <label class="radio-label"><input type="radio" name="period_status" value="irregular"><span>Yes, irregular periods</span></label>
+                                <label class="radio-label"><input type="radio" name="period_status" value="stopped"><span>No, periods have stopped</span></label>
+                                <label class="radio-label"><input type="radio" name="period_status" value="na"><span>Not applicable (hysterectomy/IUD)</span></label>
                             </div>
                         </div>
-                        <div class="form-group"><label class="form-label">Additional details</label><textarea id="mh_additional_details" class="form-textarea" placeholder="Any other menstrual concerns..."></textarea></div>
+                        <div class="form-group">
+                            <label class="form-label">If periods stopped, when did they stop?</label>
+                            <input type="text" id="periods_stopped_when" class="form-input" placeholder="e.g., 2 years ago, January 2024">
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Menstrual Concerns</h3>
+                        <div class="form-group">
+                            <label class="form-label">Do you experience any of these? (Check all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" id="concern_bleeding_outside"><span>Bleeding outside periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_pain_sex"><span>Bleeding/pain with intercourse</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_painful"><span>Painful periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_heavy"><span>Heavy periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_prolonged"><span>Prolonged periods</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Additional menstrual details</label>
+                            <textarea id="menstrual_details" class="form-textarea" rows="2"></textarea>
+                        </div>
                     </div>
 
                     <div class="subsection">
                         <h3 class="subsection-title">Contraception</h3>
                         <div class="form-group">
-                            <label class="form-label">Currently using contraception?</label>
-                            <select id="using_contraception" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                            <label class="form-label">Are you currently using contraception?</label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="using_contraception" value="yes"><span>Yes</span></label>
+                                <label class="radio-label"><input type="radio" name="using_contraception" value="no"><span>No</span></label>
+                                <label class="radio-label"><input type="radio" name="using_contraception" value="na"><span>Not applicable</span></label>
+                            </div>
                         </div>
-                        <div class="form-grid-2">
-                            <div class="form-group"><label class="form-label">Current method</label><input type="text" id="contraception_method" class="form-input" placeholder="e.g., Pill, IUD"></div>
-                            <div class="form-group"><label class="form-label">Year started</label><input type="text" id="contraception_year" class="form-input" placeholder="e.g., 2020"></div>
+                        <div class="form-group">
+                            <label class="form-label">What method?</label>
+                            <input type="text" id="contraception_method" class="form-input">
                         </div>
                     </div>
 
                     <div class="subsection">
                         <h3 class="subsection-title">Pregnancy History</h3>
-                        <div class="table-container">
-                            <table class="form-table">
-                                <thead><tr><th>Year</th><th style="text-align:center">Vaginal</th><th style="text-align:center">Caesarean</th><th style="text-align:center">Miscarriage</th><th style="text-align:center">Termination</th></tr></thead>
-                                <tbody>
-                                    <tr><td><input type="text" id="preg_year1"></td><td style="text-align:center"><input type="checkbox" id="preg1_v"></td><td style="text-align:center"><input type="checkbox" id="preg1_c"></td><td style="text-align:center"><input type="checkbox" id="preg1_m"></td><td style="text-align:center"><input type="checkbox" id="preg1_t"></td></tr>
-                                    <tr><td><input type="text" id="preg_year2"></td><td style="text-align:center"><input type="checkbox" id="preg2_v"></td><td style="text-align:center"><input type="checkbox" id="preg2_c"></td><td style="text-align:center"><input type="checkbox" id="preg2_m"></td><td style="text-align:center"><input type="checkbox" id="preg2_t"></td></tr>
-                                    <tr><td><input type="text" id="preg_year3"></td><td style="text-align:center"><input type="checkbox" id="preg3_v"></td><td style="text-align:center"><input type="checkbox" id="preg3_c"></td><td style="text-align:center"><input type="checkbox" id="preg3_m"></td><td style="text-align:center"><input type="checkbox" id="preg3_t"></td></tr>
-                                    <tr><td><input type="text" id="preg_year4"></td><td style="text-align:center"><input type="checkbox" id="preg4_v"></td><td style="text-align:center"><input type="checkbox" id="preg4_c"></td><td style="text-align:center"><input type="checkbox" id="preg4_m"></td><td style="text-align:center"><input type="checkbox" id="preg4_t"></td></tr>
-                                    <tr><td><input type="text" id="preg_year5"></td><td style="text-align:center"><input type="checkbox" id="preg5_v"></td><td style="text-align:center"><input type="checkbox" id="preg5_c"></td><td style="text-align:center"><input type="checkbox" id="preg5_m"></td><td style="text-align:center"><input type="checkbox" id="preg5_t"></td></tr>
-                                </tbody>
-                            </table>
+                        <div class="form-grid-3">
+                            <div class="form-group">
+                                <label class="form-label">Number of pregnancies</label>
+                                <input type="number" id="num_pregnancies" class="form-input" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Vaginal births</label>
+                                <input type="number" id="num_vaginal" class="form-input" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Caesarean births</label>
+                                <input type="number" id="num_caesarean" class="form-input" min="0">
+                            </div>
                         </div>
-                        <div class="form-group"><label class="form-label">Pregnancy or birth complications</label><textarea id="pregnancy_complications" class="form-textarea" placeholder="Please describe any complications..."></textarea></div>
+                        <div class="form-group">
+                            <label class="form-label">Number of miscarriages</label>
+                            <input type="number" id="num_miscarriages" class="form-input" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Any pregnancy complications?</label>
+                            <textarea id="pregnancy_complications" class="form-textarea" rows="2" placeholder="e.g., gestational diabetes, pre-eclampsia, post-partum hemorrhage"></textarea>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Step 5: Preventative Health -->
                 <div class="step" data-step="5">
-                    <h2 class="section-title">Preventative Health</h2>
-                    <p class="section-description">Screening tests, immunizations, and family history.</p>
+                    <h2 class="section-title">Preventative Health Screening</h2>
                     
                     <div class="subsection">
                         <h3 class="subsection-title">Screening Tests</h3>
                         <div class="form-grid-2">
-                            <div class="form-group"><label class="form-label">Last Cervical Screening Test</label><input type="text" id="screen_cervical_year" class="form-input" placeholder="Year"></div>
+                            <div class="form-group">
+                                <label class="form-label">Last Cervical Screening Test (year)</label>
+                                <input type="text" id="screen_cervical_year" class="form-input" placeholder="e.g., 2023">
+                            </div>
                             <div class="form-group">
                                 <label class="form-label">Result</label>
-                                <select id="screen_cervical_result" class="form-select"><option value="">Select...</option><option value="normal">Normal</option><option value="abnormal">Abnormal</option></select>
+                                <div class="radio-group">
+                                    <label class="radio-label"><input type="radio" name="cervical_result" value="normal"><span>Normal</span></label>
+                                    <label class="radio-label"><input type="radio" name="cervical_result" value="abnormal"><span>Abnormal</span></label>
+                                    <label class="radio-label"><input type="radio" name="cervical_result" value="unsure"><span>Unsure</span></label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-grid-2">
-                            <div class="form-group"><label class="form-label">Last Mammogram (year)</label><input type="text" id="screen_mammo" class="form-input" placeholder="Year"></div>
-                            <div class="form-group"><label class="form-label">Last Bone Density (year)</label><input type="text" id="screen_bd" class="form-input" placeholder="Year"></div>
+                            <div class="form-group">
+                                <label class="form-label">Last Mammogram (year)</label>
+                                <input type="text" id="screen_mammo_year" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Bone Density scan (year)</label>
+                                <input type="text" id="screen_bone_year" class="form-input">
+                            </div>
                         </div>
-                        <div class="form-group"><label class="form-label">Bone density result / follow up</label><textarea id="screen_bd_notes" class="form-textarea" rows="2"></textarea></div>
-                        <div class="form-group"><label class="form-label">Last Bowel Cancer Screen (year)</label><input type="text" id="screen_bowel" class="form-input" placeholder="Year"></div>
-                        <div class="form-group"><label class="form-label">Bowel screen result / follow up</label><textarea id="screen_bowel_notes" class="form-textarea" rows="2"></textarea></div>
-                    </div>
-
-                    <div class="subsection">
-                        <h3 class="subsection-title">Immunization History</h3>
-                        <p class="help-text" style="margin-bottom: 15px;">Select all that apply</p>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label"><input type="checkbox" id="imm_hpv"><span>HPV Vaccine (Gardasil)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_influenza"><span>Annual Influenza</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_covid"><span>COVID-19</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_tdap"><span>Tdap (Whooping Cough)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_mmr"><span>MMR</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_varicella"><span>Varicella (Chickenpox)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_hepb"><span>Hepatitis B</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_shingles"><span>Shingles</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="imm_pneumococcal"><span>Pneumococcal</span></label>
-                        </div>
-                        <div class="form-group"><label class="form-label">Other vaccinations</label><textarea id="imm_other" class="form-textarea" rows="2"></textarea></div>
                     </div>
 
                     <div class="subsection">
                         <h3 class="subsection-title">Family History</h3>
-                        <p class="help-text" style="margin-bottom: 15px;">Please list which relatives have had the following conditions</p>
-                        <div class="table-container">
-                            <table class="form-table">
-                                <thead><tr><th>Condition</th><th>Relative(s)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Heart attack</td><td><input type="text" id="fh_heart_attack_rel" placeholder="e.g., Father, Mother"></td></tr>
-                                    <tr><td>Breast cancer</td><td><input type="text" id="fh_breast_cancer_rel"></td></tr>
-                                    <tr><td>Arthritis</td><td><input type="text" id="fh_arthritis_rel"></td></tr>
-                                    <tr><td>Blood clots</td><td><input type="text" id="fh_blood_clots_rel"></td></tr>
-                                    <tr><td>Stroke</td><td><input type="text" id="fh_stroke_rel"></td></tr>
-                                    <tr><td>Thyroid disease</td><td><input type="text" id="fh_thyroid_rel"></td></tr>
-                                    <tr><td>Diabetes</td><td><input type="text" id="fh_diabetes_rel"></td></tr>
-                                    <tr><td>Osteoporosis</td><td><input type="text" id="fh_osteoporosis_rel"></td></tr>
-                                    <tr><td>Ovarian cancer</td><td><input type="text" id="fh_ovarian_rel"></td></tr>
-                                    <tr><td>Other</td><td><input type="text" id="fh_other_rel"></td></tr>
-                                </tbody>
-                            </table>
+                        <div class="form-group">
+                            <label class="form-label">Do any blood relatives have the following? (Check all that apply) <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" id="fh_breast"><span>Breast cancer</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_ovarian"><span>Ovarian cancer</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_heart"><span>Heart attack (before age 60)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_stroke"><span>Stroke (before age 60)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_clots"><span>Blood clots</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_diabetes"><span>Diabetes</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_none"><span>None of the above</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">For checked conditions, which relatives?</label>
+                            <textarea id="fh_details" class="form-textarea" rows="2" placeholder="e.g., 'Mother - breast cancer, Sister - diabetes'"></textarea>
                         </div>
                     </div>
                 </div>
@@ -707,71 +745,61 @@
                 <!-- Step 6: Lifestyle -->
                 <div class="step" data-step="6">
                     <h2 class="section-title">Lifestyle Factors</h2>
-                    <p class="section-description">Information about your daily habits and wellness.</p>
                     
                     <div class="subsection">
                         <h3 class="subsection-title">Smoking & Vaping</h3>
-                        <div class="form-grid-2">
-                            <div class="form-group">
-                                <label class="form-label">Currently smoke/vape?</label>
-                                <select id="ls_current_smoke" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Smoked/vaped in the past?</label>
-                                <select id="ls_past_smoke" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                            </div>
-                        </div>
-                        <div class="form-grid-3">
-                            <div class="form-group"><label class="form-label">Amount per day</label><input type="text" id="ls_amount" class="form-input" placeholder="e.g., 10 cigarettes"></div>
-                            <div class="form-group"><label class="form-label">Year started</label><input type="text" id="ls_year_started" class="form-input"></div>
-                            <div class="form-group"><label class="form-label">Year stopped</label><input type="text" id="ls_year_stopped" class="form-input"></div>
-                        </div>
-                    </div>
-
-                    <div class="subsection">
-                        <h3 class="subsection-title">Alcohol Consumption</h3>
-                        <div class="form-grid-2">
-                            <div class="form-group">
-                                <label class="form-label">Do you drink alcohol?</label>
-                                <select id="ls_alcohol" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                            </div>
-                            <div class="form-group"><label class="form-label">Days per week</label><input type="number" id="ls_alcohol_days" class="form-input" min="0" max="7"></div>
-                        </div>
-                        <div class="form-group"><label class="form-label">Drinks per occasion</label><input type="number" id="ls_alcohol_drinks" class="form-input" min="0"><span class="help-text">Standard drinks when consuming</span></div>
-                    </div>
-
-                    <div class="subsection">
-                        <h3 class="subsection-title">Exercise & Diet</h3>
                         <div class="form-group">
-                            <label class="form-label">Exercise frequency</label>
-                            <select id="ls_exercise" class="form-select"><option value="">Select...</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="occasionally">Occasionally</option><option value="never">Never</option></select>
+                            <label class="form-label">Do you currently smoke or vape? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="current_smoke" value="yes"><span>Yes</span></label>
+                                <label class="radio-label"><input type="radio" name="current_smoke" value="no" checked><span>No</span></label>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Follow a specific diet?</label>
-                            <select id="ls_specific_diet" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                            <label class="form-label">Have you smoked or vaped in the past? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="past_smoke" value="yes"><span>Yes</span></label>
+                                <label class="radio-label"><input type="radio" name="past_smoke" value="no" checked><span>No</span></label>
+                            </div>
                         </div>
-                        <div class="form-group"><label class="form-label">Diet details</label><textarea id="ls_diet_details" class="form-textarea" rows="2" placeholder="e.g., Keto, Vegan, Vegetarian"></textarea></div>
                     </div>
 
                     <div class="subsection">
+                        <h3 class="subsection-title">Alcohol</h3>
+                        <div class="form-group">
+                            <label class="form-label">Do you drink alcohol?</label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="alcohol_use" value="regular"><span>Yes, regularly</span></label>
+                                <label class="radio-label"><input type="radio" name="alcohol_use" value="occasional"><span>Occasionally</span></label>
+                                <label class="radio-label"><input type="radio" name="alcohol_use" value="no"><span>No</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Exercise</h3>
+                        <div class="form-group">
+                            <label class="form-label">How often do you exercise?</label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="exercise_freq" value="daily"><span>Daily</span></label>
+                                <label class="radio-label"><input type="radio" name="exercise_freq" value="several"><span>Several times per week</span></label>
+                                <label class="radio-label"><input type="radio" name="exercise_freq" value="occasional"><span>Occasionally</span></label>
+                                <label class="radio-label"><input type="radio" name="exercise_freq" value="rarely"><span>Rarely/Never</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection" id="weight_management_section" style="display:none;">
                         <h3 class="subsection-title">Weight Management Safety Screening</h3>
                         <div class="form-group">
-                            <label class="form-label">Ever had pancreatitis?</label>
-                            <select id="wm_pancreatitis" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Ever had gallbladder disease?</label>
-                            <select id="wm_gallbladder" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                            <span class="help-text">Including gallstones or removal</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">You or family member with Medullary Thyroid Cancer?</label>
-                            <select id="wm_mtc" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Ever diagnosed with MEN2?</label>
-                            <select id="wm_men2" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                            <span class="help-text">Multiple Endocrine Neoplasia type 2</span>
+                            <label class="form-label">Have you EVER had any of the following? (Check all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" id="wm_pancreatitis"><span>Pancreatitis</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_gallbladder"><span>Gallbladder disease (including gallstones or removal)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_thyroid_cancer"><span>Medullary thyroid cancer (you or family member)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_men2"><span>MEN2 (Multiple Endocrine Neoplasia type 2)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_none"><span>None of the above</span></label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -781,95 +809,109 @@
                     <h2 class="section-title">Relationship & Safety</h2>
                     <p class="section-description">Your safety and wellbeing are important to us. This information is confidential.</p>
                     
-                    <div class="subsection">
-                        <h3 class="subsection-title">Current Relationship</h3>
-                        <div class="form-group">
-                            <label class="form-label">Afraid for your safety or worried about being harmed?</label>
-                            <select id="rs_current_afraid" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Experience verbal, physical, or financial abuse?</label>
-                            <select id="rs_current_abuse" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                    <div class="form-group">
+                        <label class="form-label">Are you currently afraid for your safety or worried about being harmed in your relationship? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="rs_current_afraid" value="yes"><span>Yes</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_current_afraid" value="no" checked><span>No</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_current_afraid" value="prefer_not"><span>Prefer not to answer</span></label>
                         </div>
                     </div>
 
-                    <div class="subsection">
-                        <h3 class="subsection-title">Past Relationships</h3>
-                        <div class="form-group">
-                            <label class="form-label">Ever been afraid for your safety?</label>
-                            <select id="rs_past_afraid" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Experienced verbal, physical, or financial abuse?</label>
-                            <select id="rs_past_abuse" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                    <div class="form-group">
+                        <label class="form-label">Do you currently experience verbal, physical, or financial abuse? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="rs_current_abuse" value="yes"><span>Yes</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_current_abuse" value="no" checked><span>No</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_current_abuse" value="prefer_not"><span>Prefer not to answer</span></label>
                         </div>
                     </div>
 
-                    <div class="subsection">
-                        <h3 class="subsection-title">Support</h3>
-                        <div class="form-group">
-                            <label class="form-label">History of childhood trauma?</label>
-                            <select id="rs_childhood_trauma" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                    <div class="form-group">
+                        <label class="form-label">Have you ever been afraid for your safety in a past relationship? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="rs_past_afraid" value="yes"><span>Yes</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_past_afraid" value="no" checked><span>No</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_past_afraid" value="prefer_not"><span>Prefer not to answer</span></label>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Would you like to seek help for any of these issues?</label>
-                            <select id="rs_wants_help" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Have you experienced verbal, physical, or financial abuse in the past? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="rs_past_abuse" value="yes"><span>Yes</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_past_abuse" value="no" checked><span>No</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_past_abuse" value="prefer_not"><span>Prefer not to answer</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">History of childhood trauma? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="rs_childhood_trauma" value="yes"><span>Yes</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_childhood_trauma" value="no" checked><span>No</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_childhood_trauma" value="prefer_not"><span>Prefer not to answer</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Would you like to seek help or support for any relationship or safety issues? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="rs_wants_help" value="yes"><span>Yes</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_wants_help" value="no" checked><span>No</span></label>
+                            <label class="radio-label"><input type="radio" name="rs_wants_help" value="not_now"><span>Not at this time</span></label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 8: Menopause Symptoms -->
                 <div class="step" data-step="8">
-                    <h2 class="section-title">Menopause Symptom Assessment</h2>
+                    <h2 class="section-title">Menopause Symptoms</h2>
                     <p class="section-description">Please rate the severity of any symptoms you're experiencing.</p>
                     
                     <div class="table-container">
                         <table class="form-table">
-                            <thead><tr><th>Symptom</th><th style="text-align:center">Mild</th><th style="text-align:center">Moderate</th><th style="text-align:center">Severe</th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th>Symptom</th>
+                                    <th style="text-align:center;">None</th>
+                                    <th style="text-align:center;">Mild</th>
+                                    <th style="text-align:center;">Moderate</th>
+                                    <th style="text-align:center;">Severe</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr><td>Hot flushes</td><td style="text-align:center"><input type="radio" name="hot_flushes" value="mild"></td><td style="text-align:center"><input type="radio" name="hot_flushes" value="moderate"></td><td style="text-align:center"><input type="radio" name="hot_flushes" value="severe"></td></tr>
-                                <tr><td>Light headed</td><td style="text-align:center"><input type="radio" name="light_headed" value="mild"></td><td style="text-align:center"><input type="radio" name="light_headed" value="moderate"></td><td style="text-align:center"><input type="radio" name="light_headed" value="severe"></td></tr>
-                                <tr><td>Headaches</td><td style="text-align:center"><input type="radio" name="headaches" value="mild"></td><td style="text-align:center"><input type="radio" name="headaches" value="moderate"></td><td style="text-align:center"><input type="radio" name="headaches" value="severe"></td></tr>
-                                <tr><td>Irritability</td><td style="text-align:center"><input type="radio" name="irritability" value="mild"></td><td style="text-align:center"><input type="radio" name="irritability" value="moderate"></td><td style="text-align:center"><input type="radio" name="irritability" value="severe"></td></tr>
-                                <tr><td>Depression</td><td style="text-align:center"><input type="radio" name="depression" value="mild"></td><td style="text-align:center"><input type="radio" name="depression" value="moderate"></td><td style="text-align:center"><input type="radio" name="depression" value="severe"></td></tr>
-                                <tr><td>Unloved feelings</td><td style="text-align:center"><input type="radio" name="unloved_feelings" value="mild"></td><td style="text-align:center"><input type="radio" name="unloved_feelings" value="moderate"></td><td style="text-align:center"><input type="radio" name="unloved_feelings" value="severe"></td></tr>
-                                <tr><td>Anxiety</td><td style="text-align:center"><input type="radio" name="anxiety" value="mild"></td><td style="text-align:center"><input type="radio" name="anxiety" value="moderate"></td><td style="text-align:center"><input type="radio" name="anxiety" value="severe"></td></tr>
-                                <tr><td>Mood changes</td><td style="text-align:center"><input type="radio" name="mood_changes" value="mild"></td><td style="text-align:center"><input type="radio" name="mood_changes" value="moderate"></td><td style="text-align:center"><input type="radio" name="mood_changes" value="severe"></td></tr>
-                                <tr><td>Sleeplessness</td><td style="text-align:center"><input type="radio" name="sleeplessness" value="mild"></td><td style="text-align:center"><input type="radio" name="sleeplessness" value="moderate"></td><td style="text-align:center"><input type="radio" name="sleeplessness" value="severe"></td></tr>
-                                <tr><td>Unusual tiredness</td><td style="text-align:center"><input type="radio" name="tiredness" value="mild"></td><td style="text-align:center"><input type="radio" name="tiredness" value="moderate"></td><td style="text-align:center"><input type="radio" name="tiredness" value="severe"></td></tr>
-                                <tr><td>Backache</td><td style="text-align:center"><input type="radio" name="backache" value="mild"></td><td style="text-align:center"><input type="radio" name="backache" value="moderate"></td><td style="text-align:center"><input type="radio" name="backache" value="severe"></td></tr>
-                                <tr><td>Joint pains</td><td style="text-align:center"><input type="radio" name="joint_pains" value="mild"></td><td style="text-align:center"><input type="radio" name="joint_pains" value="moderate"></td><td style="text-align:center"><input type="radio" name="joint_pains" value="severe"></td></tr>
-                                <tr><td>Muscle pains</td><td style="text-align:center"><input type="radio" name="muscle_pains" value="mild"></td><td style="text-align:center"><input type="radio" name="muscle_pains" value="moderate"></td><td style="text-align:center"><input type="radio" name="muscle_pains" value="severe"></td></tr>
-                                <tr><td>New facial hair</td><td style="text-align:center"><input type="radio" name="new_facial_hair" value="mild"></td><td style="text-align:center"><input type="radio" name="new_facial_hair" value="moderate"></td><td style="text-align:center"><input type="radio" name="new_facial_hair" value="severe"></td></tr>
-                                <tr><td>Dry skin</td><td style="text-align:center"><input type="radio" name="dry_skin" value="mild"></td><td style="text-align:center"><input type="radio" name="dry_skin" value="moderate"></td><td style="text-align:center"><input type="radio" name="dry_skin" value="severe"></td></tr>
-                                <tr><td>Skin crawling</td><td style="text-align:center"><input type="radio" name="skin_crawling" value="mild"></td><td style="text-align:center"><input type="radio" name="skin_crawling" value="moderate"></td><td style="text-align:center"><input type="radio" name="skin_crawling" value="severe"></td></tr>
-                                <tr><td>Less sexual feeling</td><td style="text-align:center"><input type="radio" name="reduced_libido" value="mild"></td><td style="text-align:center"><input type="radio" name="reduced_libido" value="moderate"></td><td style="text-align:center"><input type="radio" name="reduced_libido" value="severe"></td></tr>
-                                <tr><td>Dry vagina</td><td style="text-align:center"><input type="radio" name="vaginal_dryness" value="mild"></td><td style="text-align:center"><input type="radio" name="vaginal_dryness" value="moderate"></td><td style="text-align:center"><input type="radio" name="vaginal_dryness" value="severe"></td></tr>
-                                <tr><td>Uncomfortable intercourse</td><td style="text-align:center"><input type="radio" name="painful_intercourse" value="mild"></td><td style="text-align:center"><input type="radio" name="painful_intercourse" value="moderate"></td><td style="text-align:center"><input type="radio" name="painful_intercourse" value="severe"></td></tr>
-                                <tr><td>Urinary frequency</td><td style="text-align:center"><input type="radio" name="urinary_frequency" value="mild"></td><td style="text-align:center"><input type="radio" name="urinary_frequency" value="moderate"></td><td style="text-align:center"><input type="radio" name="urinary_frequency" value="severe"></td></tr>
-                                <tr><td>Weight gain</td><td style="text-align:center"><input type="radio" name="weight_gain" value="mild"></td><td style="text-align:center"><input type="radio" name="weight_gain" value="moderate"></td><td style="text-align:center"><input type="radio" name="weight_gain" value="severe"></td></tr>
+                                <tr><td>Hot flushes/night sweats</td><td style="text-align:center;"><input type="radio" name="sym_hot_flushes" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_hot_flushes" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_hot_flushes" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_hot_flushes" value="severe"></td></tr>
+                                <tr><td>Irritability</td><td style="text-align:center;"><input type="radio" name="sym_irritability" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_irritability" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_irritability" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_irritability" value="severe"></td></tr>
+                                <tr><td>Low mood/Depression</td><td style="text-align:center;"><input type="radio" name="sym_depression" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_depression" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_depression" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_depression" value="severe"></td></tr>
+                                <tr><td>Anxiety</td><td style="text-align:center;"><input type="radio" name="sym_anxiety" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_anxiety" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_anxiety" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_anxiety" value="severe"></td></tr>
+                                <tr><td>Mood swings</td><td style="text-align:center;"><input type="radio" name="sym_mood_swings" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_mood_swings" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_mood_swings" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_mood_swings" value="severe"></td></tr>
+                                <tr><td>Poor sleep/Insomnia</td><td style="text-align:center;"><input type="radio" name="sym_sleep" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_sleep" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_sleep" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_sleep" value="severe"></td></tr>
+                                <tr><td>Fatigue</td><td style="text-align:center;"><input type="radio" name="sym_fatigue" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_fatigue" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_fatigue" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_fatigue" value="severe"></td></tr>
+                                <tr><td>Reduced sexual desire</td><td style="text-align:center;"><input type="radio" name="sym_libido" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_libido" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_libido" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_libido" value="severe"></td></tr>
+                                <tr><td>Vaginal dryness</td><td style="text-align:center;"><input type="radio" name="sym_vaginal_dryness" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_vaginal_dryness" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_vaginal_dryness" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_vaginal_dryness" value="severe"></td></tr>
+                                <tr><td>Painful intercourse</td><td style="text-align:center;"><input type="radio" name="sym_painful_sex" value="none" checked></td><td style="text-align:center;"><input type="radio" name="sym_painful_sex" value="mild"></td><td style="text-align:center;"><input type="radio" name="sym_painful_sex" value="moderate"></td><td style="text-align:center;"><input type="radio" name="sym_painful_sex" value="severe"></td></tr>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="subsection">
-                        <h3 class="subsection-title">Menopause Management</h3>
+                        <h3 class="subsection-title">Current Menopause Management</h3>
                         <div class="form-group">
-                            <label class="form-label">How are you currently managing symptoms?</label>
-                            <textarea id="menopause_management" class="form-textarea" rows="3" placeholder="Please describe any treatments, lifestyle changes, or approaches you're using..."></textarea>
+                            <label class="form-label">Are you currently taking HRT or other medications for menopause symptoms? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="taking_hrt" value="yes"><span>Yes</span></label>
+                                <label class="radio-label"><input type="radio" name="taking_hrt" value="no" checked><span>No</span></label>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Currently taking HRT medications?</label>
-                            <select id="taking_hrt" class="form-select"><option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                            <label class="form-label">Please list all HRT medications with doses</label>
+                            <textarea id="hrt_details" class="form-textarea" rows="3" placeholder="e.g., 'Estradot 50mcg patch twice weekly, Prometrium 100mg daily'"></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">HRT medication details</label>
-                            <textarea id="hrt_details" class="form-textarea" rows="3" placeholder="Please list medications and dosages..."></textarea>
+                            <label class="form-label">What other approaches are you using to manage symptoms?</label>
+                            <textarea id="other_management" class="form-textarea" rows="3" placeholder="e.g., lifestyle changes, supplements, complementary therapies"></textarea>
                         </div>
-                    </div>
-
-                    <div class="button-group">
-                        <button type="button" class="btn btn-clear" onclick="clearForm()">Clear All Data</button>
                     </div>
                 </div>
 
@@ -887,6 +929,16 @@
     <script>
         let currentStep = 1;
         const totalSteps = 8;
+
+        // Show/hide weight management section based on reason for visit
+        document.getElementById('reason_weight').addEventListener('change', function() {
+            const wmSection = document.getElementById('weight_management_section');
+            if (this.checked) {
+                wmSection.style.display = 'block';
+            } else {
+                wmSection.style.display = 'none';
+            }
+        });
 
         function getRadioValue(name) {
             const el = document.querySelector('input[name="' + name + '"]:checked');
@@ -937,14 +989,6 @@
             setTimeout(() => indicator.classList.remove('show'), 2000);
         }
 
-        function clearForm() {
-            if (confirm('Are you sure you want to clear all form data? This cannot be undone.')) {
-                document.getElementById('womensHealthForm').reset();
-                showStep(1);
-                alert('Form has been cleared.');
-            }
-        }
-
         async function submitForm() {
             const nameField = document.getElementById('patient_name');
             const dobField = document.getElementById('dob');
@@ -970,172 +1014,126 @@
             const data = {
                 patient_name: getValue("patient_name"),
                 dob: getValue("dob"),
-
-                anthropometrics: {
-                    height_cm: getValue("height_cm"),
-                    weight_kg: getValue("weight_kg"),
-                    recent_weight_change: getValue("recent_weight_change"),
-                    recent_weight_change_kg: getValue("recent_weight_change_kg"),
-                    recent_weight_change_timeframe: getValue("recent_weight_change_timeframe")
-                },
+                height_cm: getValue("height_cm"),
+                weight_kg: getValue("weight_kg"),
 
                 reason_for_visit: {
-                    contraception_advice: getChecked("contraception_advice"),
-                    bladder_problems: getChecked("bladder_problems"),
-                    menopause: getChecked("menopause"),
-                    fertility_issues: getChecked("fertility_issues"),
-                    relationship_issues: getChecked("relationship_issues"),
-                    breast_concerns: getChecked("breast_concerns"),
-                    pregnancy: getChecked("pregnancy"),
-                    mental_health: getChecked("mental_health"),
-                    sexual_health: getChecked("sexual_health"),
-                    period_concerns: getChecked("period_concerns"),
-                    cervical_screening_test: getChecked("cervical_screening_test"),
-                    other: getValue("other_reason")
+                    menopause: getChecked("reason_menopause"),
+                    weight_management: getChecked("reason_weight"),
+                    contraception: getChecked("reason_contraception"),
+                    periods: getChecked("reason_periods"),
+                    sexual_health: getChecked("reason_sexual"),
+                    bladder: getChecked("reason_bladder"),
+                    breast: getChecked("reason_breast"),
+                    mental_health: getChecked("reason_mental"),
+                    other_checked: getChecked("reason_other_check"),
+                    other_text: getValue("reason_other_text")
+                },
+
+                medical_history_safety: {
+                    breast_cancer: getChecked("hx_breast_cancer"),
+                    blood_clot: getChecked("hx_blood_clot"),
+                    heart_stroke: getChecked("hx_heart_stroke"),
+                    liver_disease: getChecked("hx_liver"),
+                    endometrial_cancer: getChecked("hx_endometrial"),
+                    ovarian_cancer: getChecked("hx_ovarian"),
+                    melanoma: getChecked("hx_melanoma"),
+                    vaginal_bleeding: getChecked("hx_vaginal_bleeding"),
+                    none: getChecked("hx_none"),
+                    details: getValue("hx_details")
                 },
 
                 allergies: {
-                    has_allergies: getValue("has_allergies"),
-                    list: [
-                        { allergy: getValue("allergy1"), reaction: getValue("reaction1") },
-                        { allergy: getValue("allergy2"), reaction: getValue("reaction2") },
-                        { allergy: getValue("allergy3"), reaction: getValue("reaction3") }
-                    ]
+                    has_allergies: getRadioValue("has_allergies"),
+                    allergy1: { medication: getValue("allergy1_med"), reaction: getValue("allergy1_reaction") },
+                    allergy2: { medication: getValue("allergy2_med"), reaction: getValue("allergy2_reaction") }
                 },
 
-                past_medical_history: [
-                    { year: getValue("pmh_year1"), details: getValue("pmh_details1") },
-                    { year: getValue("pmh_year2"), details: getValue("pmh_details2") },
-                    { year: getValue("pmh_year3"), details: getValue("pmh_details3") },
-                    { year: getValue("pmh_year4"), details: getValue("pmh_details4") }
-                ],
-
+                other_conditions: getValue("other_conditions"),
                 current_medications: getValue("current_medications"),
 
-                menstrual_history: {
-                    not_applicable: getChecked("mh_not_applicable"),
-                    age_first_period: getValue("mh_age_first_period"),
-                    period_length: getValue("mh_period_length"),
-                    cycle_length: getValue("mh_cycle_length"),
-                    symptoms: {
-                        bleeding_outside_period: getChecked("mh_bleeding_outside"),
-                        pain_with_intercourse: getChecked("mh_pain_intercourse"),
-                        painful_periods: getChecked("mh_painful_periods"),
-                        heavy_periods: getChecked("mh_heavy_periods"),
-                        prolonged_periods: getChecked("mh_prolonged_periods")
+                menstrual_reproductive: {
+                    period_status: getRadioValue("period_status"),
+                    periods_stopped_when: getValue("periods_stopped_when"),
+                    concerns: {
+                        bleeding_outside: getChecked("concern_bleeding_outside"),
+                        pain_with_sex: getChecked("concern_pain_sex"),
+                        painful_periods: getChecked("concern_painful"),
+                        heavy_periods: getChecked("concern_heavy"),
+                        prolonged_periods: getChecked("concern_prolonged")
                     },
-                    additional_details: getValue("mh_additional_details")
+                    additional_details: getValue("menstrual_details"),
+                    using_contraception: getRadioValue("using_contraception"),
+                    contraception_method: getValue("contraception_method")
                 },
 
-                contraception_history: {
-                    using_contraception: getValue("using_contraception"),
-                    method: getValue("contraception_method"),
-                    year_started: getValue("contraception_year")
+                pregnancy_history: {
+                    num_pregnancies: getValue("num_pregnancies"),
+                    num_vaginal: getValue("num_vaginal"),
+                    num_caesarean: getValue("num_caesarean"),
+                    num_miscarriages: getValue("num_miscarriages"),
+                    complications: getValue("pregnancy_complications")
                 },
 
-                pregnancy_history: [
-                    { year: getValue("preg_year1"), vaginal: getChecked("preg1_v"), caesarean: getChecked("preg1_c"), miscarriage: getChecked("preg1_m"), termination: getChecked("preg1_t") },
-                    { year: getValue("preg_year2"), vaginal: getChecked("preg2_v"), caesarean: getChecked("preg2_c"), miscarriage: getChecked("preg2_m"), termination: getChecked("preg2_t") },
-                    { year: getValue("preg_year3"), vaginal: getChecked("preg3_v"), caesarean: getChecked("preg3_c"), miscarriage: getChecked("preg3_m"), termination: getChecked("preg3_t") },
-                    { year: getValue("preg_year4"), vaginal: getChecked("preg4_v"), caesarean: getChecked("preg4_c"), miscarriage: getChecked("preg4_m"), termination: getChecked("preg4_t") },
-                    { year: getValue("preg_year5"), vaginal: getChecked("preg5_v"), caesarean: getChecked("preg5_c"), miscarriage: getChecked("preg5_m"), termination: getChecked("preg5_t") }
-                ],
-
-                pregnancy_complications: getValue("pregnancy_complications"),
-
-                preventative_health: {
-                    cervical_screen_year: getValue("screen_cervical_year"),
-                    cervical_screen_result: getValue("screen_cervical_result"),
-                    mammogram_year: getValue("screen_mammo"),
-                    bone_density_year: getValue("screen_bd"),
-                    bone_density_notes: getValue("screen_bd_notes"),
-                    bowel_cancer_screen_year: getValue("screen_bowel"),
-                    bowel_cancer_notes: getValue("screen_bowel_notes"),
-                    immunisation_history: {
-                        hpv: getChecked("imm_hpv"),
-                        influenza: getChecked("imm_influenza"),
-                        covid: getChecked("imm_covid"),
-                        tdap: getChecked("imm_tdap"),
-                        mmr: getChecked("imm_mmr"),
-                        varicella: getChecked("imm_varicella"),
-                        hepatitis_b: getChecked("imm_hepb"),
-                        shingles: getChecked("imm_shingles"),
-                        pneumococcal: getChecked("imm_pneumococcal"),
-                        other: getValue("imm_other")
-                    }
+                screening: {
+                    cervical_year: getValue("screen_cervical_year"),
+                    cervical_result: getRadioValue("cervical_result"),
+                    mammogram_year: getValue("screen_mammo_year"),
+                    bone_density_year: getValue("screen_bone_year")
                 },
 
                 family_history: {
-                    heart_attack_relative: getValue("fh_heart_attack_rel"),
-                    breast_cancer_relative: getValue("fh_breast_cancer_rel"),
-                    arthritis_relative: getValue("fh_arthritis_rel"),
-                    blood_clots_relative: getValue("fh_blood_clots_rel"),
-                    stroke_relative: getValue("fh_stroke_rel"),
-                    thyroid_disease_relative: getValue("fh_thyroid_rel"),
-                    diabetes_relative: getValue("fh_diabetes_rel"),
-                    osteoporosis_relative: getValue("fh_osteoporosis_rel"),
-                    ovarian_cancer_relative: getValue("fh_ovarian_rel"),
-                    other_relative: getValue("fh_other_rel")
+                    breast_cancer: getChecked("fh_breast"),
+                    ovarian_cancer: getChecked("fh_ovarian"),
+                    heart_attack: getChecked("fh_heart"),
+                    stroke: getChecked("fh_stroke"),
+                    blood_clots: getChecked("fh_clots"),
+                    diabetes: getChecked("fh_diabetes"),
+                    none: getChecked("fh_none"),
+                    details: getValue("fh_details")
                 },
 
                 lifestyle: {
-                    current_smoke_vape: getValue("ls_current_smoke"),
-                    past_smoke_vape: getValue("ls_past_smoke"),
-                    amount_per_day: getValue("ls_amount"),
-                    year_started: getValue("ls_year_started"),
-                    year_stopped: getValue("ls_year_stopped"),
-                    alcohol_use: getValue("ls_alcohol"),
-                    alcohol_days_per_week: getValue("ls_alcohol_days"),
-                    alcohol_drinks_per_day: getValue("ls_alcohol_drinks"),
-                    exercise_frequency: getValue("ls_exercise"),
-                    specific_diet: getValue("ls_specific_diet"),
-                    diet_details: getValue("ls_diet_details")
+                    current_smoke: getRadioValue("current_smoke"),
+                    past_smoke: getRadioValue("past_smoke"),
+                    alcohol_use: getRadioValue("alcohol_use"),
+                    exercise_frequency: getRadioValue("exercise_freq")
                 },
 
                 weight_management_safety: {
-                    history_pancreatitis: getValue("wm_pancreatitis"),
-                    history_gallbladder_disease: getValue("wm_gallbladder"),
-                    history_mtc: getValue("wm_mtc"),
-                    history_men2: getValue("wm_men2")
+                    pancreatitis: getChecked("wm_pancreatitis"),
+                    gallbladder: getChecked("wm_gallbladder"),
+                    thyroid_cancer: getChecked("wm_thyroid_cancer"),
+                    men2: getChecked("wm_men2"),
+                    none: getChecked("wm_none")
                 },
 
                 relationship_safety: {
-                    current_afraid: getValue("rs_current_afraid"),
-                    current_abuse: getValue("rs_current_abuse"),
-                    past_afraid: getValue("rs_past_afraid"),
-                    past_abuse: getValue("rs_past_abuse"),
-                    childhood_trauma: getValue("rs_childhood_trauma"),
-                    wants_help: getValue("rs_wants_help")
+                    current_afraid: getRadioValue("rs_current_afraid"),
+                    current_abuse: getRadioValue("rs_current_abuse"),
+                    past_afraid: getRadioValue("rs_past_afraid"),
+                    past_abuse: getRadioValue("rs_past_abuse"),
+                    childhood_trauma: getRadioValue("rs_childhood_trauma"),
+                    wants_help: getRadioValue("rs_wants_help")
                 },
 
                 menopause_symptoms: {
-                    hot_flushes: getRadioValue("hot_flushes"),
-                    light_headed: getRadioValue("light_headed"),
-                    headaches: getRadioValue("headaches"),
-                    irritability: getRadioValue("irritability"),
-                    depression: getRadioValue("depression"),
-                    unloved_feelings: getRadioValue("unloved_feelings"),
-                    anxiety: getRadioValue("anxiety"),
-                    mood_changes: getRadioValue("mood_changes"),
-                    sleeplessness: getRadioValue("sleeplessness"),
-                    tiredness: getRadioValue("tiredness"),
-                    backache: getRadioValue("backache"),
-                    joint_pains: getRadioValue("joint_pains"),
-                    muscle_pains: getRadioValue("muscle_pains"),
-                    new_facial_hair: getRadioValue("new_facial_hair"),
-                    dry_skin: getRadioValue("dry_skin"),
-                    skin_crawling: getRadioValue("skin_crawling"),
-                    reduced_libido: getRadioValue("reduced_libido"),
-                    vaginal_dryness: getRadioValue("vaginal_dryness"),
-                    painful_intercourse: getRadioValue("painful_intercourse"),
-                    urinary_frequency: getRadioValue("urinary_frequency"),
-                    weight_gain: getRadioValue("weight_gain")
+                    hot_flushes: getRadioValue("sym_hot_flushes"),
+                    irritability: getRadioValue("sym_irritability"),
+                    depression: getRadioValue("sym_depression"),
+                    anxiety: getRadioValue("sym_anxiety"),
+                    mood_swings: getRadioValue("sym_mood_swings"),
+                    sleep: getRadioValue("sym_sleep"),
+                    fatigue: getRadioValue("sym_fatigue"),
+                    libido: getRadioValue("sym_libido"),
+                    vaginal_dryness: getRadioValue("sym_vaginal_dryness"),
+                    painful_sex: getRadioValue("sym_painful_sex")
                 },
 
                 menopause_management: {
-                    current_management: getValue("menopause_management"),
-                    taking_hrt: getValue("taking_hrt"),
-                    hrt_details: getValue("hrt_details")
+                    taking_hrt: getRadioValue("taking_hrt"),
+                    hrt_details: getValue("hrt_details"),
+                    other_management: getValue("other_management")
                 }
             };
 
