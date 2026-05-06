@@ -1025,6 +1025,115 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
 
+            const boolStr = (v) => (v ? "yes" : "");
+
+            const flat = {
+                "form-name": "womens-health-questionnaire",
+                "bot-field": "",
+                subject: "New Women's Health Questionnaire submission",
+                submitted_at: new Date().toISOString(),
+
+                patient_name: getValue("patient_name"),
+                dob: getValue("dob"),
+                height_cm: getValue("height_cm"),
+                weight_kg: getValue("weight_kg"),
+
+                reason_menopause: boolStr(getChecked("reason_menopause")),
+                reason_weight: boolStr(getChecked("reason_weight")),
+                reason_contraception: boolStr(getChecked("reason_contraception")),
+                reason_periods: boolStr(getChecked("reason_periods")),
+                reason_sexual: boolStr(getChecked("reason_sexual")),
+                reason_bladder: boolStr(getChecked("reason_bladder")),
+                reason_breast: boolStr(getChecked("reason_breast")),
+                reason_mental: boolStr(getChecked("reason_mental")),
+                reason_other_check: boolStr(getChecked("reason_other_check")),
+                reason_other_text: getValue("reason_other_text"),
+
+                hx_breast_cancer: boolStr(getChecked("hx_breast_cancer")),
+                hx_blood_clot: boolStr(getChecked("hx_blood_clot")),
+                hx_heart_stroke: boolStr(getChecked("hx_heart_stroke")),
+                hx_liver: boolStr(getChecked("hx_liver")),
+                hx_endometrial: boolStr(getChecked("hx_endometrial")),
+                hx_ovarian: boolStr(getChecked("hx_ovarian")),
+                hx_melanoma: boolStr(getChecked("hx_melanoma")),
+                hx_vaginal_bleeding: boolStr(getChecked("hx_vaginal_bleeding")),
+                hx_none: boolStr(getChecked("hx_none")),
+                hx_details: getValue("hx_details"),
+
+                has_allergies: getRadioValue("has_allergies"),
+                allergy1_med: getValue("allergy1_med"),
+                allergy1_reaction: getValue("allergy1_reaction"),
+                allergy2_med: getValue("allergy2_med"),
+                allergy2_reaction: getValue("allergy2_reaction"),
+
+                other_conditions: getValue("other_conditions"),
+                current_medications: getValue("current_medications"),
+
+                period_status: getRadioValue("period_status"),
+                periods_stopped_when: getValue("periods_stopped_when"),
+                concern_bleeding_outside: boolStr(getChecked("concern_bleeding_outside")),
+                concern_pain_sex: boolStr(getChecked("concern_pain_sex")),
+                concern_painful: boolStr(getChecked("concern_painful")),
+                concern_heavy: boolStr(getChecked("concern_heavy")),
+                concern_prolonged: boolStr(getChecked("concern_prolonged")),
+                menstrual_details: getValue("menstrual_details"),
+                using_contraception: getRadioValue("using_contraception"),
+                contraception_method: getValue("contraception_method"),
+
+                num_pregnancies: getValue("num_pregnancies"),
+                num_vaginal: getValue("num_vaginal"),
+                num_caesarean: getValue("num_caesarean"),
+                num_miscarriages: getValue("num_miscarriages"),
+                pregnancy_complications: getValue("pregnancy_complications"),
+
+                screen_cervical_year: getValue("screen_cervical_year"),
+                cervical_result: getRadioValue("cervical_result"),
+                screen_mammo_year: getValue("screen_mammo_year"),
+                screen_bone_year: getValue("screen_bone_year"),
+
+                fh_breast: boolStr(getChecked("fh_breast")),
+                fh_ovarian: boolStr(getChecked("fh_ovarian")),
+                fh_heart: boolStr(getChecked("fh_heart")),
+                fh_stroke: boolStr(getChecked("fh_stroke")),
+                fh_clots: boolStr(getChecked("fh_clots")),
+                fh_diabetes: boolStr(getChecked("fh_diabetes")),
+                fh_none: boolStr(getChecked("fh_none")),
+                fh_details: getValue("fh_details"),
+
+                current_smoke: getRadioValue("current_smoke"),
+                past_smoke: getRadioValue("past_smoke"),
+                alcohol_use: getRadioValue("alcohol_use"),
+                exercise_freq: getRadioValue("exercise_freq"),
+
+                wm_pancreatitis: boolStr(getChecked("wm_pancreatitis")),
+                wm_gallbladder: boolStr(getChecked("wm_gallbladder")),
+                wm_thyroid_cancer: boolStr(getChecked("wm_thyroid_cancer")),
+                wm_men2: boolStr(getChecked("wm_men2")),
+                wm_none: boolStr(getChecked("wm_none")),
+
+                rs_current_afraid: getRadioValue("rs_current_afraid"),
+                rs_current_abuse: getRadioValue("rs_current_abuse"),
+                rs_past_afraid: getRadioValue("rs_past_afraid"),
+                rs_past_abuse: getRadioValue("rs_past_abuse"),
+                rs_childhood_trauma: getRadioValue("rs_childhood_trauma"),
+                rs_wants_help: getRadioValue("rs_wants_help"),
+
+                sym_hot_flushes: getRadioValue("sym_hot_flushes"),
+                sym_irritability: getRadioValue("sym_irritability"),
+                sym_depression: getRadioValue("sym_depression"),
+                sym_anxiety: getRadioValue("sym_anxiety"),
+                sym_mood_swings: getRadioValue("sym_mood_swings"),
+                sym_sleep: getRadioValue("sym_sleep"),
+                sym_fatigue: getRadioValue("sym_fatigue"),
+                sym_libido: getRadioValue("sym_libido"),
+                sym_vaginal_dryness: getRadioValue("sym_vaginal_dryness"),
+                sym_painful_sex: getRadioValue("sym_painful_sex"),
+
+                taking_hrt: getRadioValue("taking_hrt"),
+                hrt_details: getValue("hrt_details"),
+                other_management: getValue("other_management")
+            };
+
             const data = {
                 patient_name: getValue("patient_name"),
                 dob: getValue("dob"),
@@ -1152,18 +1261,16 @@
             };
 
             try {
-                const response = await fetch(
-                    "https://gekabqqvbgvjtstxqsie.supabase.co/functions/v1/submit-womens-form",
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)
-                    }
-                );
+                flat.submission_json = JSON.stringify(data);
+
+                const response = await fetch("/__forms.html", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(flat).toString()
+                });
 
                 if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(JSON.stringify(result));
+                    throw new Error("HTTP " + response.status);
                 }
 
                 window.location.href = "thank-you.html";
