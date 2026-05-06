@@ -1152,18 +1152,40 @@
             };
 
             try {
-                const response = await fetch(
+                const payload = JSON.stringify(data);
+
+                const supabasePromise = fetch(
                     "https://gekabqqvbgvjtstxqsie.supabase.co/functions/v1/submit-womens-form",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)
+                        body: payload
                     }
                 );
 
-                if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(JSON.stringify(result));
+                const emailPromise = fetch("/api/submit-form", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: payload
+                });
+
+                const [supabaseResult, emailResult] = await Promise.allSettled([
+                    supabasePromise,
+                    emailPromise
+                ]);
+
+                if (supabaseResult.status === "fulfilled" && !supabaseResult.value.ok) {
+                    const errBody = await supabaseResult.value.json().catch(() => ({}));
+                    throw new Error(JSON.stringify(errBody));
+                }
+                if (supabaseResult.status === "rejected") {
+                    throw supabaseResult.reason;
+                }
+
+                if (emailResult.status === "fulfilled" && !emailResult.value.ok) {
+                    console.warn("Formatted email send failed:", await emailResult.value.text().catch(() => ""));
+                } else if (emailResult.status === "rejected") {
+                    console.warn("Formatted email request rejected:", emailResult.reason);
                 }
 
                 window.location.href = "thank-you.html";
