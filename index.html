@@ -494,7 +494,11 @@
         </div>
 
         <div class="form-wrapper">
-            <form id="womensHealthForm">
+            <form id="womensHealthForm" name="womens-health-questionnaire" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+                <input type="hidden" name="form-name" value="womens-health-questionnaire">
+                <p style="display:none;">
+                    <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                </p>
                 <!-- Step 1: Personal Information -->
                 <div class="step active" data-step="1">
                     <h2 class="section-title">Personal Information</h2>
@@ -1151,19 +1155,38 @@
                 }
             };
 
-            try {
-                const response = await fetch(
-                    "https://gekabqqvbgvjtstxqsie.supabase.co/functions/v1/submit-womens-form",
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)
+            function flatten(obj, prefix, out) {
+                out = out || {};
+                for (const key in obj) {
+                    if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+                    const value = obj[key];
+                    const flatKey = prefix ? prefix + "." + key : key;
+                    if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+                        flatten(value, flatKey, out);
+                    } else if (typeof value === "boolean") {
+                        out[flatKey] = value ? "yes" : "no";
+                    } else {
+                        out[flatKey] = value == null ? "" : String(value);
                     }
-                );
+                }
+                return out;
+            }
+
+            const params = new URLSearchParams();
+            params.append("form-name", "womens-health-questionnaire");
+            const flat = flatten(data);
+            for (const k in flat) params.append(k, flat[k]);
+            params.append("submission_json", JSON.stringify(data));
+
+            try {
+                const response = await fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: params.toString()
+                });
 
                 if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(JSON.stringify(result));
+                    throw new Error("Server returned " + response.status);
                 }
 
                 window.location.href = "thank-you.html";
