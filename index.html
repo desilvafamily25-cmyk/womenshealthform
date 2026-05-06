@@ -1152,18 +1152,19 @@
             };
 
             try {
-                const response = await fetch(
-                    "https://gekabqqvbgvjtstxqsie.supabase.co/functions/v1/submit-womens-form",
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)
-                    }
-                );
+                const response = await fetch("/api/submit-form", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
 
                 if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(JSON.stringify(result));
+                    let message = `Server returned ${response.status}`;
+                    try {
+                        const result = await response.json();
+                        if (result && result.error) message = result.error;
+                    } catch (_) {}
+                    throw new Error(message);
                 }
 
                 window.location.href = "thank-you.html";
