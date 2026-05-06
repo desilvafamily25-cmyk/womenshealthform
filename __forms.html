@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form skeleton (build-time detection only)</title>
+</head>
+<body>
+  <!--
+    This page is only used by Netlify's build bot to register the form and its
+    field names at deploy time. It is never shown to users. The real UI lives
+    in index.html, which submits to /__forms.html via AJAX.
+  -->
+  <form name="womens-health-questionnaire" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="womens-health-questionnaire" />
+    <input type="hidden" name="subject" value="New Women's Health Questionnaire submission" />
+    <input name="bot-field" />
+
+    <input name="patient_name" />
+    <input name="dob" />
+    <input name="height_cm" />
+    <input name="weight_kg" />
+
+    <input name="reason_menopause" />
+    <input name="reason_weight" />
+    <input name="reason_contraception" />
+    <input name="reason_periods" />
+    <input name="reason_sexual" />
+    <input name="reason_bladder" />
+    <input name="reason_breast" />
+    <input name="reason_mental" />
+    <input name="reason_other_check" />
+    <input name="reason_other_text" />
+
+    <input name="hx_breast_cancer" />
+    <input name="hx_blood_clot" />
+    <input name="hx_heart_stroke" />
+    <input name="hx_liver" />
+    <input name="hx_endometrial" />
+    <input name="hx_ovarian" />
+    <input name="hx_melanoma" />
+    <input name="hx_vaginal_bleeding" />
+    <input name="hx_none" />
+    <textarea name="hx_details"></textarea>
+
+    <input name="has_allergies" />
+    <input name="allergy1_med" />
+    <input name="allergy1_reaction" />
+    <input name="allergy2_med" />
+    <input name="allergy2_reaction" />
+
+    <textarea name="other_conditions"></textarea>
+    <textarea name="current_medications"></textarea>
+
+    <input name="period_status" />
+    <input name="periods_stopped_when" />
+    <input name="concern_bleeding_outside" />
+    <input name="concern_pain_sex" />
+    <input name="concern_painful" />
+    <input name="concern_heavy" />
+    <input name="concern_prolonged" />
+    <textarea name="menstrual_details"></textarea>
+    <input name="using_contraception" />
+    <input name="contraception_method" />
+
+    <input name="num_pregnancies" />
+    <input name="num_vaginal" />
+    <input name="num_caesarean" />
+    <input name="num_miscarriages" />
+    <textarea name="pregnancy_complications"></textarea>
+
+    <input name="screen_cervical_year" />
+    <input name="cervical_result" />
+    <input name="screen_mammo_year" />
+    <input name="screen_bone_year" />
+
+    <input name="fh_breast" />
+    <input name="fh_ovarian" />
+    <input name="fh_heart" />
+    <input name="fh_stroke" />
+    <input name="fh_clots" />
+    <input name="fh_diabetes" />
+    <input name="fh_none" />
+    <textarea name="fh_details"></textarea>
+
+    <input name="current_smoke" />
+    <input name="past_smoke" />
+    <input name="alcohol_use" />
+    <input name="exercise_freq" />
+
+    <input name="wm_pancreatitis" />
+    <input name="wm_gallbladder" />
+    <input name="wm_thyroid_cancer" />
+    <input name="wm_men2" />
+    <input name="wm_none" />
+
+    <input name="rs_current_afraid" />
+    <input name="rs_current_abuse" />
+    <input name="rs_past_afraid" />
+    <input name="rs_past_abuse" />
+    <input name="rs_childhood_trauma" />
+    <input name="rs_wants_help" />
+
+    <input name="sym_hot_flushes" />
+    <input name="sym_irritability" />
+    <input name="sym_depression" />
+    <input name="sym_anxiety" />
+    <input name="sym_mood_swings" />
+    <input name="sym_sleep" />
+    <input name="sym_fatigue" />
+    <input name="sym_libido" />
+    <input name="sym_vaginal_dryness" />
+    <input name="sym_painful_sex" />
+
+    <input name="taking_hrt" />
+    <textarea name="hrt_details"></textarea>
+    <textarea name="other_management"></textarea>
+
+    <input name="submitted_at" />
+    <textarea name="submission_json"></textarea>
+  </form>
+</body>
+</html>
