@@ -494,7 +494,11 @@
         </div>
 
         <div class="form-wrapper">
-            <form id="womensHealthForm">
+            <form id="womensHealthForm" name="womensHealthForm" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="womensHealthForm">
+                <div style="display:none;">
+                    <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+                </div>
                 <!-- Step 1: Personal Information -->
                 <div class="step active" data-step="1">
                     <h2 class="section-title">Personal Information</h2>
@@ -502,22 +506,22 @@
                     
                     <div class="form-group">
                         <label class="form-label">Full Name <span class="required">*</span></label>
-                        <input type="text" id="patient_name" class="form-input" required>
+                        <input type="text" id="patient_name" name="patient_name" class="form-input" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Date of Birth <span class="required">*</span></label>
-                        <input type="date" id="dob" class="form-input" required>
+                        <input type="date" id="dob" name="dob" class="form-input" required>
                     </div>
 
                     <div class="form-grid-2">
                         <div class="form-group">
                             <label class="form-label">Height (cm)</label>
-                            <input type="number" id="height_cm" class="form-input" step="0.1">
+                            <input type="number" id="height_cm" name="height_cm" class="form-input" step="0.1">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Weight (kg)</label>
-                            <input type="number" id="weight_kg" class="form-input" step="0.1">
+                            <input type="number" id="weight_kg" name="weight_kg" class="form-input" step="0.1">
                         </div>
                     </div>
                 </div>
@@ -528,20 +532,20 @@
                     <p class="section-description">What brings you here today? (Select all that apply)</p>
                     
                     <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" id="reason_menopause"><span>Menopause/Perimenopause symptoms</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_weight"><span>Weight management</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_contraception"><span>Contraception advice</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_periods"><span>Period concerns</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_sexual"><span>Sexual health concerns</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_bladder"><span>Bladder problems</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_breast"><span>Breast concerns</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_mental"><span>Mental health concerns</span></label>
-                        <label class="checkbox-label"><input type="checkbox" id="reason_other_check"><span>Other</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_menopause" name="reason_menopause"><span>Menopause/Perimenopause symptoms</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_weight" name="reason_weight"><span>Weight management</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_contraception" name="reason_contraception"><span>Contraception advice</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_periods" name="reason_periods"><span>Period concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_sexual" name="reason_sexual"><span>Sexual health concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_bladder" name="reason_bladder"><span>Bladder problems</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_breast" name="reason_breast"><span>Breast concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_mental" name="reason_mental"><span>Mental health concerns</span></label>
+                        <label class="checkbox-label"><input type="checkbox" id="reason_other_check" name="reason_other_check"><span>Other</span></label>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">If other, please specify</label>
-                        <input type="text" id="reason_other_text" class="form-input">
+                        <input type="text" id="reason_other_text" name="reason_other_text" class="form-input">
                     </div>
                 </div>
 
@@ -556,20 +560,20 @@
                         </div>
                         
                         <div class="checkbox-group">
-                            <label class="checkbox-label"><input type="checkbox" id="hx_breast_cancer"><span>Breast cancer</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_blood_clot"><span>Blood clot (DVT or pulmonary embolism)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_heart_stroke"><span>Heart attack or stroke</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_liver"><span>Liver disease</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_endometrial"><span>Endometrial cancer or hyperplasia</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_ovarian"><span>Ovarian cancer</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_melanoma"><span>Melanoma</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_vaginal_bleeding"><span>Current unexplained vaginal bleeding</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="hx_none"><span>None of the above</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_breast_cancer" name="hx_breast_cancer"><span>Breast cancer</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_blood_clot" name="hx_blood_clot"><span>Blood clot (DVT or pulmonary embolism)</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_heart_stroke" name="hx_heart_stroke"><span>Heart attack or stroke</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_liver" name="hx_liver"><span>Liver disease</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_endometrial" name="hx_endometrial"><span>Endometrial cancer or hyperplasia</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_ovarian" name="hx_ovarian"><span>Ovarian cancer</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_melanoma" name="hx_melanoma"><span>Melanoma</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_vaginal_bleeding" name="hx_vaginal_bleeding"><span>Current unexplained vaginal bleeding</span></label>
+                            <label class="checkbox-label"><input type="checkbox" id="hx_none" name="hx_none"><span>None of the above</span></label>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">If you checked any conditions above, please provide year(s) diagnosed</label>
-                            <textarea id="hx_details" class="form-textarea" rows="2"></textarea>
+                            <textarea id="hx_details" name="hx_details" class="form-textarea" rows="2"></textarea>
                         </div>
                     </div>
 
@@ -585,21 +589,21 @@
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label class="form-label">Allergy 1: Medication/Substance</label>
-                                <input type="text" id="allergy1_med" class="form-input">
+                                <input type="text" id="allergy1_med" name="allergy1_med" class="form-input">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Reaction</label>
-                                <input type="text" id="allergy1_reaction" class="form-input">
+                                <input type="text" id="allergy1_reaction" name="allergy1_reaction" class="form-input">
                             </div>
                         </div>
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label class="form-label">Allergy 2: Medication/Substance</label>
-                                <input type="text" id="allergy2_med" class="form-input">
+                                <input type="text" id="allergy2_med" name="allergy2_med" class="form-input">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Reaction</label>
-                                <input type="text" id="allergy2_reaction" class="form-input">
+                                <input type="text" id="allergy2_reaction" name="allergy2_reaction" class="form-input">
                             </div>
                         </div>
                     </div>
@@ -608,7 +612,7 @@
                         <h3 class="subsection-title">Other Medical Conditions</h3>
                         <div class="form-group">
                             <label class="form-label">Any other significant medical conditions?</label>
-                            <textarea id="other_conditions" class="form-textarea" rows="3" placeholder="e.g., diabetes, thyroid disease, high blood pressure"></textarea>
+                            <textarea id="other_conditions" name="other_conditions" class="form-textarea" rows="3" placeholder="e.g., diabetes, thyroid disease, high blood pressure"></textarea>
                         </div>
                     </div>
 
@@ -616,7 +620,7 @@
                         <h3 class="subsection-title">Current Medications</h3>
                         <div class="form-group">
                             <label class="form-label">List ALL current medications <span class="required">*</span></label>
-                            <textarea id="current_medications" class="form-textarea" rows="4" placeholder="Include vitamins, supplements, natural therapies"></textarea>
+                            <textarea id="current_medications" name="current_medications" class="form-textarea" rows="4" placeholder="Include vitamins, supplements, natural therapies"></textarea>
                         </div>
                     </div>
                 </div>
@@ -638,7 +642,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">If periods stopped, when did they stop?</label>
-                            <input type="text" id="periods_stopped_when" class="form-input" placeholder="e.g., 2 years ago, January 2024">
+                            <input type="text" id="periods_stopped_when" name="periods_stopped_when" class="form-input" placeholder="e.g., 2 years ago, January 2024">
                         </div>
                     </div>
 
@@ -647,16 +651,16 @@
                         <div class="form-group">
                             <label class="form-label">Do you experience any of these? (Check all that apply)</label>
                             <div class="checkbox-group">
-                                <label class="checkbox-label"><input type="checkbox" id="concern_bleeding_outside"><span>Bleeding outside periods</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="concern_pain_sex"><span>Bleeding/pain with intercourse</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="concern_painful"><span>Painful periods</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="concern_heavy"><span>Heavy periods</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="concern_prolonged"><span>Prolonged periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_bleeding_outside" name="concern_bleeding_outside"><span>Bleeding outside periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_pain_sex" name="concern_pain_sex"><span>Bleeding/pain with intercourse</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_painful" name="concern_painful"><span>Painful periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_heavy" name="concern_heavy"><span>Heavy periods</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="concern_prolonged" name="concern_prolonged"><span>Prolonged periods</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Additional menstrual details</label>
-                            <textarea id="menstrual_details" class="form-textarea" rows="2"></textarea>
+                            <textarea id="menstrual_details" name="menstrual_details" class="form-textarea" rows="2"></textarea>
                         </div>
                     </div>
 
@@ -672,7 +676,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">What method?</label>
-                            <input type="text" id="contraception_method" class="form-input">
+                            <input type="text" id="contraception_method" name="contraception_method" class="form-input">
                         </div>
                     </div>
 
@@ -681,24 +685,24 @@
                         <div class="form-grid-3">
                             <div class="form-group">
                                 <label class="form-label">Number of pregnancies</label>
-                                <input type="number" id="num_pregnancies" class="form-input" min="0">
+                                <input type="number" id="num_pregnancies" name="num_pregnancies" class="form-input" min="0">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Vaginal births</label>
-                                <input type="number" id="num_vaginal" class="form-input" min="0">
+                                <input type="number" id="num_vaginal" name="num_vaginal" class="form-input" min="0">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Caesarean births</label>
-                                <input type="number" id="num_caesarean" class="form-input" min="0">
+                                <input type="number" id="num_caesarean" name="num_caesarean" class="form-input" min="0">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Number of miscarriages</label>
-                            <input type="number" id="num_miscarriages" class="form-input" min="0">
+                            <input type="number" id="num_miscarriages" name="num_miscarriages" class="form-input" min="0">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Any pregnancy complications?</label>
-                            <textarea id="pregnancy_complications" class="form-textarea" rows="2" placeholder="e.g., gestational diabetes, pre-eclampsia, post-partum hemorrhage"></textarea>
+                            <textarea id="pregnancy_complications" name="pregnancy_complications" class="form-textarea" rows="2" placeholder="e.g., gestational diabetes, pre-eclampsia, post-partum hemorrhage"></textarea>
                         </div>
                     </div>
                 </div>
@@ -712,7 +716,7 @@
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label class="form-label">Last Cervical Screening Test (year)</label>
-                                <input type="text" id="screen_cervical_year" class="form-input" placeholder="e.g., 2023">
+                                <input type="text" id="screen_cervical_year" name="screen_cervical_year" class="form-input" placeholder="e.g., 2023">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Result</label>
@@ -726,11 +730,11 @@
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label class="form-label">Last Mammogram (year)</label>
-                                <input type="text" id="screen_mammo_year" class="form-input">
+                                <input type="text" id="screen_mammo_year" name="screen_mammo_year" class="form-input">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Last Bone Density scan (year)</label>
-                                <input type="text" id="screen_bone_year" class="form-input">
+                                <input type="text" id="screen_bone_year" name="screen_bone_year" class="form-input">
                             </div>
                         </div>
                     </div>
@@ -740,18 +744,18 @@
                         <div class="form-group">
                             <label class="form-label">Do any blood relatives have the following? (Check all that apply) <span class="required">*</span></label>
                             <div class="checkbox-group">
-                                <label class="checkbox-label"><input type="checkbox" id="fh_breast"><span>Breast cancer</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="fh_ovarian"><span>Ovarian cancer</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="fh_heart"><span>Heart attack (before age 60)</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="fh_stroke"><span>Stroke (before age 60)</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="fh_clots"><span>Blood clots</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="fh_diabetes"><span>Diabetes</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="fh_none"><span>None of the above</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_breast" name="fh_breast"><span>Breast cancer</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_ovarian" name="fh_ovarian"><span>Ovarian cancer</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_heart" name="fh_heart"><span>Heart attack (before age 60)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_stroke" name="fh_stroke"><span>Stroke (before age 60)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_clots" name="fh_clots"><span>Blood clots</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_diabetes" name="fh_diabetes"><span>Diabetes</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="fh_none" name="fh_none"><span>None of the above</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">For checked conditions, which relatives?</label>
-                            <textarea id="fh_details" class="form-textarea" rows="2" placeholder="e.g., 'Mother - breast cancer, Sister - diabetes'"></textarea>
+                            <textarea id="fh_details" name="fh_details" class="form-textarea" rows="2" placeholder="e.g., 'Mother - breast cancer, Sister - diabetes'"></textarea>
                         </div>
                     </div>
                 </div>
@@ -808,11 +812,11 @@
                         <div class="form-group">
                             <label class="form-label">Have you EVER had any of the following? (Check all that apply)</label>
                             <div class="checkbox-group">
-                                <label class="checkbox-label"><input type="checkbox" id="wm_pancreatitis"><span>Pancreatitis</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="wm_gallbladder"><span>Gallbladder disease (including gallstones or removal)</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="wm_thyroid_cancer"><span>Medullary thyroid cancer (you or family member)</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="wm_men2"><span>MEN2 (Multiple Endocrine Neoplasia type 2)</span></label>
-                                <label class="checkbox-label"><input type="checkbox" id="wm_none"><span>None of the above</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_pancreatitis" name="wm_pancreatitis"><span>Pancreatitis</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_gallbladder" name="wm_gallbladder"><span>Gallbladder disease (including gallstones or removal)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_thyroid_cancer" name="wm_thyroid_cancer"><span>Medullary thyroid cancer (you or family member)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_men2" name="wm_men2"><span>MEN2 (Multiple Endocrine Neoplasia type 2)</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="wm_none" name="wm_none"><span>None of the above</span></label>
                             </div>
                         </div>
                     </div>
@@ -920,11 +924,11 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Please list all HRT medications with doses</label>
-                            <textarea id="hrt_details" class="form-textarea" rows="3" placeholder="e.g., 'Estradot 50mcg patch twice weekly, Prometrium 100mg daily'"></textarea>
+                            <textarea id="hrt_details" name="hrt_details" class="form-textarea" rows="3" placeholder="e.g., 'Estradot 50mcg patch twice weekly, Prometrium 100mg daily'"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label">What other approaches are you using to manage symptoms?</label>
-                            <textarea id="other_management" class="form-textarea" rows="3" placeholder="e.g., lifestyle changes, supplements, complementary therapies"></textarea>
+                            <textarea id="other_management" name="other_management" class="form-textarea" rows="3" placeholder="e.g., lifestyle changes, supplements, complementary therapies"></textarea>
                         </div>
                     </div>
                 </div>
@@ -1152,22 +1156,7 @@
             };
 
             try {
-                const response = await fetch(
-                    "https://gekabqqvbgvjtstxqsie.supabase.co/functions/v1/submit-womens-form",
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)
-                    }
-                );
-
-                if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(JSON.stringify(result));
-                }
-
-                window.location.href = "thank-you.html";
-
+                document.getElementById('womensHealthForm').submit();
             } catch (err) {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Questionnaire';
